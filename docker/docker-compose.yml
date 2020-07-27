@@ -1,0 +1,20 @@
+version: '3.3'
+services:
+  database:
+    image: mysql
+    volumes:
+     - C:\Users\kaaydin\Projects\dockerassignment\docker\dbdata:/var/lib/mysql
+    ports:
+      - 3307:3306
+    environment:
+     MYSQL_ROOT_PASSWORD: bananabanana1
+     MYSQL_DATABASE: users
+    restart: always
+
+  spring:
+    depends_on:
+      - database
+    image: dockerspring:latest
+    ports:
+      - 3000:8080
+    restart: on-failure
